@@ -1,0 +1,15 @@
+query Test {
+  search(query: "language:js", type: USER, last: 10) {
+    edges {
+      node {
+        ... on User {
+          id
+          name
+          login
+          url
+          email
+        }
+      }
+    }
+  }
+}

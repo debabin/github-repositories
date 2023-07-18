@@ -1,0 +1,18 @@
+overwrite: true
+schema:
+  - https://api.github.com/graphql:
+      headers:
+        User-Agent: debabin
+        Authorization: "Bearer ${GITHUB_PERSONAL_TOKEN}"
+documents: './app/_src/graphql/documents/**/*.gql'
+generates:
+  ./app/_src/graphql/__generated__.ts:
+    plugins:
+      - typescript
+      - typescript-operations
+      - typescript-react-apollo
+      - typescript-graphql-request
+config:
+  maybeValue: 'T'
+  avoidOptionals: true
+  immutableTypes: true
