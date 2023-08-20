@@ -10,7 +10,9 @@
     "format": "prettier --write **/*.{ts,tsx,css,mdx}",
     "lint": "eslint . --ext ts --ext tsx",
     "typecheck": "tsc",
-    "generate-gql": "node --require dotenv/config ./node_modules/.bin/graphql-codegen --config ./app/_src/graphql/codegen.yml && prettier --write ./app/_src/graphql/__generated__.ts"
+    "generate-gql:hooks": "graphql-codegen -r dotenv/config --config ./app/_src/graphql/hooks/codegen.yml && prettier --write ./app/_src/graphql/hooks/__generated__.ts",
+    "generate-gql:requests": "graphql-codegen -r dotenv/config --config ./app/_src/graphql/requests/codegen.yml && prettier --write ./app/_src/graphql/requests/__generated__.ts",
+    "generate-gql": "yarn generate-gql:hooks & yarn generate-gql:requests"
   },
   "lint-staged": {
     "*.{ts,tsx}": [
@@ -20,6 +22,10 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.17",
+    "@emotion/react": "^11.11.1",
+    "@mantine/core": "^6.0.17",
+    "@mantine/hooks": "^6.0.17",
+    "@tabler/icons-react": "^2.29.0",
     "graphql": "^16.7.1",
     "next": "13.4.10",
     "react": "18.2.0",

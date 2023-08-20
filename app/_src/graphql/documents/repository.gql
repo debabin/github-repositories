@@ -1,0 +1,51 @@
+query Repository($name: String!, $owner: String!) {
+  repository(name: $name, owner: $owner) {
+    id
+    forkCount
+    description
+    isPrivate
+    name
+    url
+    issues(last: 10, filterBy: { states: OPEN }) {
+      nodes {
+        author {
+          avatarUrl
+          login
+          url
+        }
+        body
+        closed
+        bodyText
+        closed
+        id
+        title
+        labels(last: 10) {
+          nodes {
+            color
+            id
+            name
+          }
+        }
+        url
+      }
+      totalCount
+    }
+    owner {
+      avatarUrl
+      login
+    }
+    stargazerCount
+    languages(last: 10) {
+      edges {
+        node {
+          color
+          id
+          name
+        }
+        size
+      }
+      totalCount
+      totalSize
+    }
+  }
+}

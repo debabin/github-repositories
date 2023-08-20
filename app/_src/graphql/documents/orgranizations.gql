@@ -1,0 +1,17 @@
+query Orgranizations($login: String!) {
+  user(login: $login) {
+    organizations(last: 10) {
+      totalCount
+      nodes {
+        avatarUrl
+        description
+        id
+        email
+        login
+        name
+        url
+        location
+      }
+    }
+  }
+}

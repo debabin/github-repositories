@@ -29,6 +29,10 @@ module.exports = {
   },
   plugins: ['@next/eslint-plugin-next'],
   rules: {
+    '@typescript-eslint/no-misused-promises': 0,
+    'no-underscore-dangle': 0,
+    'react-hooks/exhaustive-deps': 0,
+    '@typescript-eslint/no-floating-promises': 0,
     '@typescript-eslint/no-shadow': 0,
     '@typescript-eslint/consistent-type-imports': [
       'error',
@@ -56,7 +60,6 @@ module.exports = {
     'no-param-reassign': 0,
     'no-restricted-syntax': 0,
     '@typescript-eslint/no-loop-func': 0,
-    'sort-keys': [1, 'asc', { natural: true, allowLineSeparatedGroups: true }],
     'react/jsx-filename-extension': [2, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
     'react/jsx-sort-props': [
       2,
