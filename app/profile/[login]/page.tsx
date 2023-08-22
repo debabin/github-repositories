@@ -10,8 +10,10 @@ interface ProfileProps {
   params: { login: string };
 }
 
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
 const Profile = async ({ params }: ProfileProps) => {
-  const profile = await gql.Profile({ login: params.login });
+  const profile = await gql.Profile({ login: params.login }).catch(notFound);
 
   if (!profile.user) return notFound();
 

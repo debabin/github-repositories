@@ -7,18 +7,20 @@ import { gql } from '@/gql';
 import { ROUTES } from '@/utils/constants';
 
 interface RepositoryModalProps {
-  params: { login: string; repository: string };
+  params: { owner: string; repository: string };
 }
 
 const Repository = async ({ params }: RepositoryModalProps) => {
-  const { repository } = await gql.Repository({ owner: params.login, name: params.repository });
+  const { repository } = await gql
+    .Repository({ owner: params.owner, name: params.repository })
+    .catch(notFound);
 
   if (!repository) return notFound();
 
   return (
     <>
       <Flex gap='lg'>
-        <Card withBorder mt='sm' padding='lg' radius='md'>
+        <Card withBorder mt='sm' padding='lg' radius='md' w='100%'>
           <Badge size='sm'>{repository.isPrivate ? 'private' : 'public'}</Badge>
           <Flex align='center' gap='3px'>
             <IconBook2 size='15px' stroke={1.5} />
@@ -62,6 +64,8 @@ const Repository = async ({ params }: RepositoryModalProps) => {
                 radius='xs'
                 size={10}
                 sections={repository.languages.edges.map((language) => {
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  // @ts-ignore
                   const value = (language.size / repository.languages.totalSize) * 100;
 
                   return {
@@ -74,6 +78,8 @@ const Repository = async ({ params }: RepositoryModalProps) => {
 
               <Flex columnGap='sm' mt='md' rowGap='5px' wrap='wrap'>
                 {repository.languages.edges.map((language) => {
+                  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+                  // @ts-ignore
                   const value = (language.size / repository.languages.totalSize) * 100;
 
                   return (

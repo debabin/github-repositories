@@ -11,7 +11,10 @@ const Organizations = async ({ params }: OrganizationsProps) => {
   const organizations = await gql.Orgranizations({ login: params.login });
 
   // eslint-disable-next-line no-promise-executor-return
-  await (() => new Promise((res) => setTimeout(res, 5000)))();
+  await (() => new Promise((res) => setTimeout(res, 10000)))();
+
+  if (params.login === 'debabin')
+    throw new Error(`failed to download data from github for user ${params.login}`);
 
   if (!organizations.user?.organizations.nodes?.length) return null;
 

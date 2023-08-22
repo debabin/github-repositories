@@ -4,11 +4,11 @@ import { Badge, Flex, LocalModal, Text } from '@/components';
 import { gql } from '@/gql';
 
 interface RepositoryModalProps {
-  params: { login: string; repository: string };
+  params: { owner: string; repository: string };
 }
 
 const RepositoryModal = async ({ params }: RepositoryModalProps) => {
-  const { repository } = await gql.Repository({ owner: params.login, name: params.repository });
+  const { repository } = await gql.Repository({ owner: params.owner, name: params.repository });
 
   if (!repository) return null;
 

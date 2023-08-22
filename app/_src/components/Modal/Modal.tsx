@@ -29,6 +29,8 @@ export const LocalModal = ({ children }: { children: React.ReactNode }) => {
 
   return (
     <Modal
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       ref={overlay}
       centered
       opened

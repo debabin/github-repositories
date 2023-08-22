@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import { Box, Container, Paper, Center, Flex } from '@/components';
+import { Box, Container, Paper, Flex } from '@/components';
 
 import { Header } from './Header';
 import { Provider } from './provider';
@@ -20,8 +20,8 @@ interface RootLayoutProps {
 
 const RootLayout = ({ children, modal }: RootLayoutProps) => (
   <html lang='en'>
-    <Provider>
-      <body className={inter.className}>
+    <body className={inter.className}>
+      <Provider>
         <Container mt='lg' size='sm'>
           <Flex direction='column' gap='lg'>
             <Paper withBorder p='xl' radius='md'>
@@ -31,8 +31,8 @@ const RootLayout = ({ children, modal }: RootLayoutProps) => (
           </Flex>
         </Container>
         {modal}
-      </body>
-    </Provider>
+      </Provider>
+    </body>
   </html>
 );
 

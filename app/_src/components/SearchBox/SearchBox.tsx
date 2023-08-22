@@ -45,6 +45,8 @@ export const SearchBox = () => {
 
   return (
     <Autocomplete
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       data={options}
       disabled={searchQuery.loading}
       icon={<IconSearch />}

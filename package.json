@@ -16,8 +16,8 @@
   },
   "lint-staged": {
     "*.{ts,tsx}": [
-      "yarn format",
-      "yarn lint --fix"
+      "prettier --write",
+      "eslint --fix"
     ]
   },
   "dependencies": {
@@ -27,7 +27,7 @@
     "@mantine/hooks": "^6.0.17",
     "@tabler/icons-react": "^2.29.0",
     "graphql": "^16.7.1",
-    "next": "13.4.10",
+    "next": "13.4.19",
     "react": "18.2.0",
     "react-dom": "18.2.0"
   },
