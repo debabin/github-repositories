@@ -1,6 +1,6 @@
-query Followers($login: String!) {
+query Followers($login: String!, $last: Int!) {
   user(login: $login) {
-    followers(last: 5) {
+    followers(last: $last) {
       totalCount
       nodes {
         id
