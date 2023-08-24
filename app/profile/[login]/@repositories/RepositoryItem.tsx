@@ -2,31 +2,12 @@ import { IconStar, IconGitFork, IconBook2 } from '@tabler/icons-react';
 import Link from 'next/link';
 
 import { Card, Badge, Text, Flex } from '@/components';
+import type { RepositoryType } from '@/gql';
 import { ROUTES } from '@/utils/constants';
 
 interface RepositoryItemProps {
   login: string;
-  repository: {
-    readonly __typename?: 'Repository';
-    readonly id: string;
-    readonly name: string;
-    readonly diskUsage?: number;
-    readonly url: any;
-    readonly stargazerCount: number;
-    readonly forkCount: number;
-    readonly description?: string;
-    readonly isPrivate: boolean;
-    readonly languages?: {
-      readonly __typename?: 'LanguageConnection';
-      readonly totalCount: number;
-      readonly totalSize: number;
-      readonly nodes?: ReadonlyArray<{
-        readonly __typename?: 'Language';
-        readonly color?: string;
-        readonly name: string;
-      }>;
-    };
-  };
+  repository: RepositoryType;
 }
 
 const RepositoryItem: React.FC<RepositoryItemProps> = ({ login, repository }) => (

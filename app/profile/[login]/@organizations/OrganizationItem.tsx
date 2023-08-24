@@ -1,18 +1,10 @@
 import Link from 'next/link';
 
 import { Card, Badge, Text, Avatar, Group } from '@/components';
+import type { OrganizationType } from '@/gql';
 
 interface OrganizationItemProps {
-  organization: {
-    readonly avatarUrl: any;
-    readonly description?: string;
-    readonly id: string;
-    readonly email?: string;
-    readonly login: string;
-    readonly name?: string;
-    readonly location?: string;
-    readonly url: any;
-  };
+  organization: OrganizationType;
 }
 
 const OrganizationItem: React.FC<OrganizationItemProps> = ({ organization }) => (
