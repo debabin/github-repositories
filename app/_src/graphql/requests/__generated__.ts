@@ -1,7 +1,6 @@
-import type { GraphQLClient } from 'graphql-request';
-import type { GraphQLClientRequestHeaders } from 'graphql-request/build/cjs/types';
+import { GraphQLClient } from 'graphql-request';
+import { GraphQLClientRequestHeaders } from 'graphql-request/build/cjs/types';
 import gql from 'graphql-tag';
-
 export type Maybe<T> = T;
 export type InputMaybe<T> = T;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
@@ -28559,6 +28558,7 @@ export enum WorkflowState {
 
 export type FollowersQueryVariables = Exact<{
   login: Scalars['String']['input'];
+  last: Scalars['Int']['input'];
 }>;
 
 export type FollowersQuery = {
@@ -28638,28 +28638,25 @@ export type RepositoriesQuery = {
     readonly repositories: {
       readonly __typename?: 'RepositoryConnection';
       readonly totalCount: number;
-      readonly edges?: ReadonlyArray<{
-        readonly __typename?: 'RepositoryEdge';
-        readonly node?: {
-          readonly __typename?: 'Repository';
-          readonly id: string;
-          readonly name: string;
-          readonly diskUsage?: number;
-          readonly url: any;
-          readonly stargazerCount: number;
-          readonly forkCount: number;
-          readonly description?: string;
-          readonly isPrivate: boolean;
-          readonly languages?: {
-            readonly __typename?: 'LanguageConnection';
-            readonly totalCount: number;
-            readonly totalSize: number;
-            readonly nodes?: ReadonlyArray<{
-              readonly __typename?: 'Language';
-              readonly color?: string;
-              readonly name: string;
-            }>;
-          };
+      readonly nodes?: ReadonlyArray<{
+        readonly __typename?: 'Repository';
+        readonly id: string;
+        readonly name: string;
+        readonly diskUsage?: number;
+        readonly url: any;
+        readonly stargazerCount: number;
+        readonly forkCount: number;
+        readonly description?: string;
+        readonly isPrivate: boolean;
+        readonly languages?: {
+          readonly __typename?: 'LanguageConnection';
+          readonly totalCount: number;
+          readonly totalSize: number;
+          readonly nodes?: ReadonlyArray<{
+            readonly __typename?: 'Language';
+            readonly color?: string;
+            readonly name: string;
+          }>;
         };
       }>;
     };
@@ -28796,9 +28793,9 @@ export type SearchQuery = {
 };
 
 export const FollowersDocument = gql`
-  query Followers($login: String!) {
+  query Followers($login: String!, $last: Int!) {
     user(login: $login) {
-      followers(last: 5) {
+      followers(last: $last) {
         totalCount
         nodes {
           id
@@ -28851,24 +28848,22 @@ export const RepositoriesDocument = gql`
   query Repositories($login: String!) {
     user(login: $login) {
       repositories(last: 10, ownerAffiliations: OWNER) {
-        edges {
-          node {
-            id
-            name
-            diskUsage
-            url
-            stargazerCount
-            forkCount
-            description
-            isPrivate
-            languages(last: 10) {
-              nodes {
-                color
-                name
-              }
-              totalCount
-              totalSize
+        nodes {
+          id
+          name
+          diskUsage
+          url
+          stargazerCount
+          forkCount
+          description
+          isPrivate
+          languages(last: 10) {
+            nodes {
+              color
+              name
             }
+            totalCount
+            totalSize
           }
         }
         totalCount

@@ -11,7 +11,7 @@ interface FollowersProps {
 const MAX_FOLLOWERS = 99;
 
 export const Followers: React.FC<FollowersProps> = ({ login }) => {
-  const followersQuery = useFollowersQuery({ variables: { login } });
+  const followersQuery = useFollowersQuery({ variables: { login, last: 5 } });
 
   if (
     !followersQuery.data?.user?.followers ||

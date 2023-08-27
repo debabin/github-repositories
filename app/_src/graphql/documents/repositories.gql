@@ -1,24 +1,22 @@
 query Repositories($login: String!) {
   user(login: $login) {
     repositories(last: 10, ownerAffiliations: OWNER) {
-      edges {
-        node {
-          id
-          name
-          diskUsage
-          url
-          stargazerCount
-          forkCount
-          description
-          isPrivate
-          languages(last: 10) {
-            nodes {
-              color
-              name
-            }
-            totalCount
-            totalSize
+      nodes {
+        id
+        name
+        diskUsage
+        url
+        stargazerCount
+        forkCount
+        description
+        isPrivate
+        languages(last: 10) {
+          nodes {
+            color
+            name
           }
+          totalCount
+          totalSize
         }
       }
       totalCount

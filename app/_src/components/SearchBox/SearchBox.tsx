@@ -49,6 +49,7 @@ export const SearchBox = () => {
       // @ts-ignore
       data={options}
       disabled={searchQuery.loading}
+      filter={Boolean}
       icon={<IconSearch />}
       itemComponent={SearchBoxItem}
       limit={5}
